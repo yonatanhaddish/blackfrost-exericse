@@ -27,12 +27,12 @@ async function runExample02() {
             order: "asc"
         });
 
-        console.log("latestBlock", latestBlock);
-        console.log("latestBlock", networkInfo);
-        console.log("latestBlock", latestEpoch);
-        console.log("latestBlock", health);
-        console.log("latestBlock", address);
-        console.log("latestBlock", pools);
+        // console.log("latestBlock", latestBlock);
+        // console.log("networkInfo", networkInfo);
+        // console.log("latestEpoch", latestEpoch);
+        // console.log("health", health);
+        console.log("address", address);
+        // console.log("pools", pools);
     }
     catch (err) {
         console.log("error", err);
@@ -42,6 +42,4 @@ async function runExample02() {
 
 
 runExample02();
-
-
 
