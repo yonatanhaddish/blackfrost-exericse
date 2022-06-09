@@ -18,8 +18,21 @@ async function runExample02() {
         const networkInfo = await API.network();
         const latestEpoch = await API.epochsLatest();
         const health = await API.health();
+        const address = await API.addresses(
+            "addr_test1qqdtqvzkl3fd0vrtjy3z40a700s8j0q0q5g9dcucdwmwk5nwy6f7gh2vzugvl7cwyhp5nsmrp4qj7ypf9wku3kc9e2hszrn7n5"
+            );
+        const pools = await API.pools({
+            page: 1,
+            count: 10,
+            order: "asc"
+        });
 
+        console.log("latestBlock", latestBlock);
+        console.log("latestBlock", networkInfo);
         console.log("latestBlock", latestEpoch);
+        console.log("latestBlock", health);
+        console.log("latestBlock", address);
+        console.log("latestBlock", pools);
     }
     catch (err) {
         console.log("error", err);
