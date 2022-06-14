@@ -4,6 +4,6 @@ router = express.Router();
 
 indexController = require('../controllers/indexController');
 
-router.get('/', indexController.getScriptsUtxos);
+router.get('/api/transaction/:id', indexController.getScriptsUtxos);
 
 module.exports = router;
