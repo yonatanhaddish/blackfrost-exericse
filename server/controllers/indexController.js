@@ -19,7 +19,7 @@ const transactionIdUtxos = async (req, res) => {
     // const transactionId = "027034b65dc469983761ed071aca90beda2f6a4abebabac80cfdd419161298da";
 
     try {
-        const api_url = `https://cardano-testnet.blockfrost.io/api/v0/accounts/${transactionId}`;
+        const api_url = `https://cardano-testnet.blockfrost.io/api/v0/txs/${transactionId}/utxos`;
         const fetch_response = await fetch(api_url, requestOptions);
         const fetch_json = await fetch_response.json();
         return res.json({transaction_Id: fetch_json});
@@ -29,6 +29,24 @@ const transactionIdUtxos = async (req, res) => {
     }
 };
 
+// querying a specific account
+const accountInfo = async (req, res) => {
+    
+    const accountId = req.params.id;
+    // const accountId = "stake_test1urkatgpm4jk7eechqm8sypaua8h00zjnhuxyunwlg05gehsrlhwrk"
+
+    try {
+        const api_url = `https://cardano-testnet.blockfrost.io/api/v0/accounts/${accountId}`;
+        const fetch_response = await fetch(api_url, requestOptions);
+        const fetch_json = await fetch_response.json();
+        return res.json({account_Id: fetch_json});
+    }
+    catch (err) {
+        res.status(500).json({error : err.message});
+    }
+};
 
 
-module.exports = { transactionIdUtxos };
+
+
+module.exports = { transactionIdUtxos, accountInfo };
