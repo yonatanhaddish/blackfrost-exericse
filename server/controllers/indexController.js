@@ -50,7 +50,7 @@ const accountInfo = async (req, res) => {
 const getScriptUtxo = async (req, res) => {
     
     const addressId = req.params.id;
-    // const accountId = "stake_test1urkatgpm4jk7eechqm8sypaua8h00zjnhuxyunwlg05gehsrlhwrk"
+    // const accountId = "addr_test1qprzqdpl65f8tv08dx8h4dwdkq2dnepe7evsr265l0vh3ahd6ksrht9dann3wpk0qgrme60w779980cvfexa7slg3n0qldhs7k"
 
     try {
         const api_url = `https://cardano-testnet.blockfrost.io/api/v0/addresses/${addressId}`;
@@ -63,7 +63,24 @@ const getScriptUtxo = async (req, res) => {
     }
 };
 
+// querying for a test
+const getInfoTest = async (req, res) => {
+    
+    const testAddress = req.params.id;
+    // const accountId = "addr_test1qprzqdpl65f8tv08dx8h4dwdkq2dnepe7evsr265l0vh3ahd6ksrht9dann3wpk0qgrme60w779980cvfexa7slg3n0qldhs7k"
+
+    try {
+        const api_url = `https://cardano-testnet.blockfrost.io/api/v0/scripts/${testAddress}`;
+        const fetch_response = await fetch(api_url, requestOptions);
+        const fetch_json = await fetch_response.json();
+        return res.json({account_Id: fetch_json});
+    }
+    catch (err) {
+        res.status(500).json({error : err.message});
+    }
+};
 
 
 
-module.exports = { transactionIdUtxos, accountInfo, getScriptUtxo };
+
+module.exports = { transactionIdUtxos, accountInfo, getScriptUtxo, getInfoTest };
