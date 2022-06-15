@@ -46,7 +46,7 @@ const accountInfo = async (req, res) => {
     }
 };
 
-// querying an address by a specific id
+// querying a specific address
 const getScriptUtxo = async (req, res) => {
     
     const addressId = req.params.id;
