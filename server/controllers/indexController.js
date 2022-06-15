@@ -46,7 +46,24 @@ const accountInfo = async (req, res) => {
     }
 };
 
+// querying an address by a specific id
+const getScriptUtxo = async (req, res) => {
+    
+    const addressId = req.params.id;
+    // const accountId = "stake_test1urkatgpm4jk7eechqm8sypaua8h00zjnhuxyunwlg05gehsrlhwrk"
+
+    try {
+        const api_url = `https://cardano-testnet.blockfrost.io/api/v0/addresses/${addressId}`;
+        const fetch_response = await fetch(api_url, requestOptions);
+        const fetch_json = await fetch_response.json();
+        return res.json({account_Id: fetch_json});
+    }
+    catch (err) {
+        res.status(500).json({error : err.message});
+    }
+};
 
 
 
-module.exports = { transactionIdUtxos, accountInfo };
+
+module.exports = { transactionIdUtxos, accountInfo, getScriptUtxo };
