@@ -11,11 +11,14 @@ const WalletConnector = () => {
   const handleWalletSelect = (obj) => {
     const whichWalletSelected = obj.target.value
     setwhichWalletSelected(whichWalletSelected);
-    // console.log(whichWalletSelected);
+    console.log(whichWalletSelected);
     refreshData();
   };
 
   const refreshData = async () => {
+    const walletIsFound = checkIfWalletFound();
+    console.log(whichWalletSelected)
+    console.log(walletIsFound);
     try {
       const walletIsFound = checkIfWalletFound();
       if (walletIsFound) {
@@ -29,18 +32,20 @@ const WalletConnector = () => {
   }
 
   const checkIfWalletFound = () => {
-
+    let walletIsFound = false;
+    
     const wallet = whichWalletSelected;
-    if (wallet == 'nami') {
+    
+    if (wallet === 'nami') {
       console.log("nami")
     }
-    else if (wallet == "eternl") {
+    else if (wallet === "eternl") {
       console.log("eternl")
     }
-    else if (wallet == 'yoroi') {
+    else if (wallet === 'yoroi') {
       console.log('yoroi')
     }
-
+    return walletIsFound;
   }
 
   return (
