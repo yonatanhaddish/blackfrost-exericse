@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Radio, RadioGroup } from "@blueprintjs/core"
 
 const WalletConnector = () => {
 
   const [whichWalletSelected, setwhichWalletSelected] = useState('');
+  const [walletIsFound, setWalletIsFound] = useState(false);
   
 
   const handleWalletSelect = (obj) => {
@@ -13,22 +14,6 @@ const WalletConnector = () => {
     // console.log(whichWalletSelected);
     refreshData();
   };
-
-  const checkIfWalletFound = () => {
-    let walletIsFound = false;
-
-    const wallet = whichWalletSelected;
-    if (wallet == 'nami') {
-      console.log("nami")
-    }
-    else if (wallet == "eternl") {
-      console.log("eternl")
-    }
-    else if (wallet == 'yoroi') {
-      console.log('yoroi')
-    }
-    return walletIsFound;
-  }
 
   const refreshData = async () => {
     try {
@@ -42,7 +27,21 @@ const WalletConnector = () => {
       console.log(err)
     }
   }
-  
+
+  const checkIfWalletFound = () => {
+
+    const wallet = whichWalletSelected;
+    if (wallet == 'nami') {
+      console.log("nami")
+    }
+    else if (wallet == "eternl") {
+      console.log("eternl")
+    }
+    else if (wallet == 'yoroi') {
+      console.log('yoroi')
+    }
+
+  }
 
   return (
     <>
@@ -50,6 +49,7 @@ const WalletConnector = () => {
         <RadioGroup label= "Select Wallet:"
                     onChange={handleWalletSelect}
                     selectedValue={whichWalletSelected}
+                    inline={true}
          >
           <Radio label='Nami' value='nami' />
           <Radio label='Eternl' value='eternl' />
