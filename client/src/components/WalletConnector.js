@@ -1,5 +1,55 @@
 import React, { useEffect, useState } from 'react';
 
+import {
+  Address,
+  BaseAddress,
+  MultiAsset,
+  Assets,
+  ScriptHash,
+  Costmdls,
+  Language,
+  CostModel,
+  AssetName,
+  TransactionUnspentOutput,
+  TransactionUnspentOutputs,
+  TransactionOutput,
+  Value,
+  TransactionBuilder,
+  TransactionBuilderConfigBuilder,
+  TransactionOutputBuilder,
+  LinearFee,
+  BigNum,
+  BigInt,
+  TransactionHash,
+  TransactionInputs,
+  TransactionInput,
+  TransactionWitnessSet,
+  Transaction,
+  PlutusData,
+  PlutusScripts,
+  PlutusScript,
+  PlutusList,
+  Redeemers,
+  Redeemer,
+  RedeemerTag,
+  Ed25519KeyHashes,
+  ConstrPlutusData,
+  ExUnits,
+  Int,
+  NetworkInfo,
+  EnterpriseAddress,
+  TransactionOutputs,
+  hash_transaction,
+  hash_script_data,
+  hash_plutus_data,
+  // index_of_input,
+  ScriptDataHash,
+  Ed25519KeyHash,
+  NativeScript,
+  StakeCredential,
+} from "@emurgo/cardano-serialization-lib-asmjs";
+
+
 import { Button, Radio, RadioGroup } from "@blueprintjs/core"
 
 const WalletConnector = () => {
@@ -8,6 +58,7 @@ const WalletConnector = () => {
   const [walletIsFound, setWalletIsFound] = useState(false);
   const [API, setAPI] = useState();
   const [walletIsEnabled, setwalletIsEnabled] = useState(false);
+  const [networkId, setNewworkId] = useState();
   
 
   const handleWalletSelect = (obj) => {
@@ -21,6 +72,9 @@ const WalletConnector = () => {
     const walletIsFound = checkIfWalletFound();
     // console.log(whichWalletSelected)
     // console.log(walletIsFound);
+
+    generateScriptAddress();
+
     try {
       const walletIsFound = checkIfWalletFound();
       // console.log(walletIsFound);
@@ -78,7 +132,8 @@ const WalletConnector = () => {
 
       await checkIfWalletEnabled();
       // await getNetworkId();
-    } catch (err) {
+    } 
+    catch (err) {
       console.log(err);
     }
     };
@@ -107,7 +162,23 @@ const WalletConnector = () => {
       console.log(err)
     }
     return walletIsEnabled;
-  }
+  };
+
+  const getNetworkId = async () => {
+
+    try {
+      const networkId = await API.getNetworkId();
+      console.log("TESTNETWORK!!!")
+    }
+    catch (err) {
+      console.log(err)
+    }
+  };
+
+  const generateScriptAddress = () => {
+    const networkId = NetworkInfo.testnet().network_id();
+    console.log("TESTNETWORKID")
+  };
 
 
   return (
