@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Radio, RadioGroup } from "@blueprintjs/core"
+import { Button, Radio, RadioGroup } from "@blueprintjs/core"
 
 const WalletConnector = () => {
 
@@ -12,19 +12,20 @@ const WalletConnector = () => {
     const whichWalletSelected = obj.target.value
     setwhichWalletSelected(whichWalletSelected);
     console.log(whichWalletSelected);
-    refreshData();
+    // refreshData();
   };
 
   const refreshData = async () => {
     const walletIsFound = checkIfWalletFound();
-    console.log(whichWalletSelected)
-    console.log(walletIsFound);
+    // console.log(whichWalletSelected)
+    // console.log(walletIsFound);
     try {
       const walletIsFound = checkIfWalletFound();
-      if (walletIsFound) {
-        console.log("walletFound")
-      }
-      else console.log("WalletNotFound");
+      // console.log(walletIsFound);
+      // if (walletIsFound) {
+      //   console.log("walletFound")
+      // }
+      // else console.log("WalletNotFound");
     }
     catch (err) {
       console.log(err)
@@ -32,10 +33,10 @@ const WalletConnector = () => {
   }
 
   const checkIfWalletFound = () => {
-    let walletIsFound = false;
+    // let walletIsFound = false;
     
     const wallet = whichWalletSelected;
-    
+
     if (wallet === 'nami') {
       console.log("nami")
     }
@@ -60,6 +61,7 @@ const WalletConnector = () => {
           <Radio label='Eternl' value='eternl' />
           <Radio label='Yoroi' value='yoroi' />
         </RadioGroup>
+        <Button onClick={refreshData}>Refresh</Button>
       </div>
     </>
   )
