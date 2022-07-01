@@ -177,7 +177,7 @@ const WalletConnector = () => {
 
   const generateScriptAddress = () => {
     const networkId = NetworkInfo.testnet().network_id();
-    console.log("TESTNETWORKID")
+    console.log("TESTNETWORKID: " + networkId)
   };
 
 
