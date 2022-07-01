@@ -7,6 +7,7 @@ const WalletConnector = () => {
   const [whichWalletSelected, setwhichWalletSelected] = useState('');
   const [walletIsFound, setWalletIsFound] = useState(false);
   const [API, setAPI] = useState();
+  const [walletIsEnabled, setwalletIsEnabled] = useState(false);
   
 
   const handleWalletSelect = (obj) => {
@@ -75,12 +76,39 @@ const WalletConnector = () => {
         console.log(API);
       }
 
-      // await checkIfWalletEnabled();
+      await checkIfWalletEnabled();
       // await getNetworkId();
     } catch (err) {
       console.log(err);
     }
     };
+
+  const checkIfWalletEnabled = async () => {
+
+    try {
+      const wallet = whichWalletSelected
+      if (wallet === "nami") {
+        const walletIsEnabled = await window.cardano.nami.isEnabled();
+        // console.log("nami: " + walletIsEnabled);
+      }
+      else if (wallet === "eternl") {
+        const walletIsEnabled = await window.cardano.eternl.isEnabled();
+        // console.log("eternl: " + walletIsEnabled);
+      }
+      else if (wallet === "yoroi") {
+        const walletIsEnabled = await window.cardano.yoroi.isEnabled();
+        // console.log("yoroi: " + walletIsEnabled);
+      }
+
+      setwalletIsEnabled({walletIsEnabled})
+      // console.log(walletIsEnabled);
+    } 
+    catch (err) {
+      console.log(err)
+    }
+    return walletIsEnabled;
+  }
+
 
   return (
     <>
